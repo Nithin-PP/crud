@@ -13,14 +13,15 @@ use App\Http\Controllers\RegController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/add', function () {
-    return view('register');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/add', function () {
+//     return view('register');
+// });
 
 Route::get('form',[RegController::class,'index']);
+Route::get('/',[RegController::class,'index']);
 Route::post('register',[RegController::class,'create']);
 Route::get('list',[RegController::class,'show']);
 Route::get('delete/{id}',[RegController::class,'delete']);

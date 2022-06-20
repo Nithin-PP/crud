@@ -7,27 +7,26 @@ use Illuminate\Http\Request;
 
 class RegController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('register');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|unique:register',
-            'password'=>'required',
+            'password' => 'required',   
+            'number' =>'required',
+            'date' => 'required',
+            'gender'=>'required',
+            'course' => 'required',
+            'qualification' =>'required',
+            'add' => 'required',
+            'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
    $regmodel= new RegModel();
@@ -38,7 +37,7 @@ class RegController extends Controller
    $regmodel->number = $request->number;
    $regmodel->dob = $request->date;
    $regmodel->gender = $request->gender;
-   $regmodel->course = $request->course;
+   $regmodel->course =implode(",",$request->course);
    $regmodel->qualification = $request->qualification;
    $regmodel->address = $request->add;
 
@@ -48,51 +47,30 @@ class RegController extends Controller
        $file->move('uploads/',$filename);
        $regmodel->image = $filename;
    $regmodel->save();
-   return redirect('add');
+   return redirect('add')->with('status','uploaded successfully');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\RegModel  $regModel
-     * @return \Illuminate\Http\Response
-     */
+
     public function show()
     {
         $data = RegModel::all();
         return view('data',['members'=>$data]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\RegModel  $regModel
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $edit=Regmodel::find($id);
         return view('edit',['edited'=>$edit]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RegModel  $regModel
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $req)
     {
         $update = RegModel::find($req->hidden);
@@ -111,21 +89,16 @@ if($req->hasFile('file')){
         $file->move('uploads/',$filename);
         $update->image = $filename;
 }
-    $update->save();
+    $update->update();
     return redirect('list');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\RegModel  $regModel
-     * @return \Illuminate\Http\Response
-     */
+
     public function delete($id)
     {
     $delete = Regmodel::find($id);
         $delete->delete();
-        return redirect('list');
+        return redirect('list')->with('success', 'Data Deleted Succesfully !!');
     }
 }

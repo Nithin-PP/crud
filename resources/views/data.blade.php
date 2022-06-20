@@ -10,8 +10,18 @@
 <body>
     <br>
     <h1>Members List</h1>
-    <br><br>
+    <br>
+    <div class="container-fluid">
     <table class="table">
+        <?php 
+        $count=1;
+        ?>
+        @if (session()->has('success'))
+        <div class="alert alert-danger col-md-12"><p style="text-align:center; size:20px;">{{ session('success') }}</p></div>
+@endif
+<a href="/" class="btn btn-primary">add+</a>
+<br> 
+<br>
         <tr>
             <th>id</th>
             <th>name</th>
@@ -26,25 +36,25 @@
             <th>image view</th>
             <th colspan="2">operation</th>
         </tr>
-        $count=1
         @foreach($members as $member)
         <tr>
             <td>{{$count}}</td>
-            <td>{{$member['name']}}</td>
-            <td>{{$member['email']}}</td>
-            <td>{{$member['password']}}</td>
-            <td>{{$member['number']}}</td>
-            <td>{{$member['dob']}}</td>
-            <td>{{$member['gender']}}</td>
-            <td>{{$member['course']}}</td>
-            <td>{{$member['qualification']}}</td>
-            <td>{{$member['address']}}</td>
+            <td>{{$member->name}}</td>
+            <td>{{$member->email}}</td>
+            <td>{{$member->password}}</td>
+            <td>{{$member->number}}</td>
+            <td>{{$member->dob}}</td>
+            <td>{{$member->gender}}</td>
+            <td>{{$member->course}}</td>
+            <td>{{$member->qualification}}</td>
+            <td>{{$member->address}}</td>
             <td><img src="{{asset('uploads/'.$member->image) }}" alt="" width="80px" height="80px"></td>
-            <td> <a href="{{'edit/'.$member['id']}}" class="btn btn-primary">edit</a> 
-                 <a href="{{'delete/'.$member['id']}}" class="btn btn-danger">delete</a>                                                </td>
+            <td> <a href="{{'edit/'.$member->id}}" class="btn btn-primary">edit</a> 
+                 <a href="{{'delete/'.$member->id}}" class="btn btn-danger">delete</a></td>
         </tr>
-        $count++
+        <?php $count++; ?>
         @endforeach
     </table>
+    </div>
 </body>
 </html>
