@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('new',[RegController::class,'index']);
 Route::post('register',[RegController::class,'create']);
 Route::get('list',[RegController::class,'show']);
+// Route::get('add',[RegController::class,'show']);
 Route::get('delete/{id}',[RegController::class,'delete']);
 
 Route::get('edit/{id}',[RegController::class,'edit']);

@@ -13,7 +13,6 @@ class RegController extends Controller
         return view('register');
     }
 
-
     public function create(Request $request)
     {
         $this->validate($request,[
@@ -26,7 +25,7 @@ class RegController extends Controller
             'course' => 'required',
             'qualification' =>'required',
             'add' => 'required',
-            'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
 
    $regmodel= new RegModel();
@@ -47,16 +46,12 @@ class RegController extends Controller
        $file->move('uploads/',$filename);
        $regmodel->image = $filename;
    $regmodel->save();
-   return redirect('add')->with('status','uploaded successfully');
+   return redirect('list')->with('status','uploaded successfully');
     }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
     public function show()
     {
         $data = RegModel::all();
@@ -82,18 +77,17 @@ class RegController extends Controller
         $update->course = $req->course;
         $update->qualification = $req->qualification;
         $update->address = $req->add;
-if($req->hasFile('file')){
+
+    if($req->hasFile('file')){
         $file = $req->file('file');
         $extention = $file->getClientOriginalName();
         $filename =  time().'.'.$extention;
         $file->move('uploads/',$filename);
         $update->image = $filename;
-}
+    }
     $update->update();
     return redirect('list');
-
     }
-
 
     public function delete($id)
     {

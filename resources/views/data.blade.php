@@ -9,17 +9,18 @@
 </head>
 <body>
     <br>
-    <h1>Members List</h1>
-    <br>
+    <h1 style="text-align:center;">Members List</h1>
     <div class="container-fluid">
     <table class="table">
         <?php 
         $count=1;
         ?>
         @if (session()->has('success'))
-        <div class="alert alert-danger col-md-12"><p style="text-align:center; size:20px;">{{ session('success') }}</p></div>
-@endif
-<a href="new" class="btn btn-primary">add+</a>
+        <div class="alert alert-danger col-md-12"><p style="text-align:center;">{{ session('success') }}</p></div>
+        @endif
+        <div >
+        <a href="new" class="btn btn-primary">add+</a>
+        </div>
 <br> 
 <br>
         <tr>

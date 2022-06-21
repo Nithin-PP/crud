@@ -101,22 +101,22 @@
             </div>
         </form>
     </div> 
-    <script>
-  function loadPreview(input, id) {
-    id = id || '#preview_img';
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
- 
-        reader.onload = function (e) {
-            $(id)
-                    .attr('src', e.target.result)
-                    .width(200)
-                    .height(150);
-        };
- 
-        reader.readAsDataURL(input.files[0]);
-    }
- }
-</script>  
+    <!-- <script>
+        $(document).ready(function(){
+            $("#submit").on('click', function(){
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var number = $('#number').val();
+                var date = $('#date').val();
+                var gender = $('#gender').val();
+                var course = $('#course').val();
+                var qualification = $('#qualification').val();
+                var add = $('#add').val();
+                var file = $('#file').val();
+                if(name != "" && email != "" && password != "" && number != "" && date != "" && gender !="" &&)
+            });
+        });
+        </script>  -->
 </body> 
 </html>
