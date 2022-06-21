@@ -19,7 +19,7 @@
         @if (session()->has('success'))
         <div class="alert alert-danger col-md-12"><p style="text-align:center; size:20px;">{{ session('success') }}</p></div>
 @endif
-<a href="/" class="btn btn-primary">add+</a>
+<a href="new" class="btn btn-primary">add+</a>
 <br> 
 <br>
         <tr>
