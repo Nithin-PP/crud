@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('courses', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('customers_id');
+            $table->string('course');
             $table->timestamps();
+            $table->foreign('customers_id')->references('id')->on('customers')
+            ->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('courses');
     }
 };
