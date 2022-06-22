@@ -1,6 +1,3 @@
-<?php
-// dd($data);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +25,7 @@
         <tr>
             <td>{{$count}}</td>
             <td>{{$data1->name}}</td>
-            <td>{{$data1->courseData['course']}}</td>
+            <td>{{$data1->companyData['course']}}</td>
             <td>{{$data1->companyData['experience']}}</td>
         </tr>
         <?php $count++; ?>

@@ -32,4 +32,5 @@ Route::post('update',[RegController::class,'update']);
 
 Route::get('one',[CustomerController::class,'create']);
 Route::get('many',[CustomerController::class,'store']);
+Route::get('all',[CustomerController::class,'show']);
 
