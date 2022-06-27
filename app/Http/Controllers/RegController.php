@@ -48,10 +48,7 @@ class RegController extends Controller
    $regmodel->save();
    return redirect('list')->with('status','uploaded successfully');
     }
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+
     public function show()
     {
         $data = RegModel::all();

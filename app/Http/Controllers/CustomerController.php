@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\Role;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -15,6 +14,7 @@ class CustomerController extends Controller
     // return view('list',['data1'=> $data]);
     $data=Customer::with('companyData')->get();  
     return view('list',compact('data'));
+    // return $data;
 
     }
 
@@ -26,23 +26,8 @@ class CustomerController extends Controller
 
     public function show()
     {
-        $result=Customer::with('roleData')->get()->find(4);
-         // return view('display1',['result'=> $result]);
+        $result=Customer::with('roleData')->get();
+        return view('display1',['result'=> $result]);
     }
 
-    public function edit(Customer $customer)
-    {
-        
-    }
-
-    public function update(Request $request, Customer $customer)
-    {
-        //
-    }
-
-
-    public function destroy(Customer $customer)
-    {
-        //
-    }
 }
